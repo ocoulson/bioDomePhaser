@@ -11,32 +11,10 @@ var TitleState = {
 		game.physics.arcade.enable(floor);
 		floor.body.immovable = true;
 
-		//Generate a cloud which will scroll across the screen
+		
+		//Generate clouds which will scroll across the screen
 		clouds = game.add.group();
 		clouds.enableBody = true;
-
-		// Generate random cloud height
-		randomNumber = Math.random();
-		if (randomNumber < 0.25) {
-			cloudHeight = 60;
-		} else if (randomNumber < 0.50) {
-			cloudHeight = 90;
-		} else if (randomNumber < 0.75) {
-			cloudHeight = 115;
-		} else {
-			cloudHeight = 145;
-		}
-
-		// Randomly choose one of 3 cloud templates
-		randomNumber = Math.random();
-		if (randomNumber < 0.33) {
-			cloud = clouds.create(game.world.width + 50, cloudHeight, 'cloud1');
-		} else if (randomNumber < 0.66) {
-			cloud = clouds.create(game.world.width + 50, cloudHeight, 'cloud2');
-		} else {
-			cloud = clouds.create(game.world.width + 50, cloudHeight, 'cloud3');
-		}
-		
 		
 
 		// Create a dome which falls from outside the game
@@ -64,7 +42,7 @@ var TitleState = {
 		}
 
 		//Generate Clouds
-		cloudIncrement = Math.random() * 50000;
+		cloudIncrement = (Math.random() * 5000);// + 1000;
 		
 		if (game.time.now - timeCheck > cloudIncrement) {
 			this.cloudGen();
