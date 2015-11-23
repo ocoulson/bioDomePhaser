@@ -12,7 +12,7 @@ var TitleState = {
 		floor.body.immovable = true;
 
 		
-		//Generate clouds which will scroll across the screen
+		//Create a group: clouds which will scroll across the screen
 		clouds = game.add.group();
 		clouds.enableBody = true;
 		
