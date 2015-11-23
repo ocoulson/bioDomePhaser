@@ -42,8 +42,8 @@ var TitleState = {
 		}
 
 		//Generate Clouds
-		cloudIncrement = (Math.random() * 5000);// + 1000;
-		
+		cloudIncrement = (Math.random() * 5000) + 1000;
+		// Generate a cloud at random intervals
 		if (game.time.now - timeCheck > cloudIncrement) {
 			this.cloudGen();
 			timeCheck = game.time.now;
