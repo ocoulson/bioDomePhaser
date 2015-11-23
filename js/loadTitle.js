@@ -7,6 +7,7 @@ var LoadTitleState = {
 		this.load.image('cloud3', 'assets/cloud3.png');
 		this.load.image('title', 'assets/title.png');
 		this.load.image('dome', 'assets/Dome1.png');
+		this.load.image('floor', 'assets/titleFloor.png');
 	},
 
 	create: function() {
