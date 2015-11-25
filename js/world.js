@@ -32,23 +32,37 @@ var WorldState = {
 	update: function() {
 		//Link cursor keys to the movement of the character and the animation
    	 	if (cursors.left.isDown){
-	        //  Move to the left
+	        //  Move to the west	      
+	        player.body.velocity.y = 0;
 	        player.body.velocity.x = -100;
 
 	        player.animations.play('west');
+	        
+
     	} else if (cursors.right.isDown) {
-	        //  Move to the right
+	        //  Move to the east
+	        player.body.velocity.y = 0;
 	        player.body.velocity.x = 100;
 
 	        player.animations.play('east');
+
 	    } else if (cursors.up.isDown) {
+	    	// Move to the north
+	    	player.body.velocity.x = 0;
 	    	player.body.velocity.y = -100;
+
 	    	player.animations.play('north');
 
 	    } else if (cursors.down.isDown) {
+	    	// Move to the south
+			player.body.velocity.x = 0;
 	    	player.body.velocity.y = 100;
+
 	    	player.animations.play('south');
 
 	    }
-	}	
+
+	    // Detect collision between eve and world limit
+	    
+	}
 };
