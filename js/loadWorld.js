@@ -6,7 +6,7 @@ var LoadWorldState = {
 	
 	preload: function() {
 		// Preload the images to be used on the title screen
-		this.game.load.spritesheet('Eve', 'assets/Spritesheets/Eve1.png', 32, 32);
+		this.game.load.spritesheet('Eve', 'assets/Spritesheets/Eve1_24-32.png', 24, 32);
 		
 	},
 
