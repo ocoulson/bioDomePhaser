@@ -1,9 +1,7 @@
 //State for the Title state
 var TitleState = {
 	// A debug library which appears below the game displaying some information
-	init: function() {
-		this.game.add.plugin(Phaser.Plugin.Debug);
-	},
+	
 	preload: function() {
 		startTimer = timeCheck = game.time.now;
 	},
