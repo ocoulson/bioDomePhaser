@@ -31,39 +31,85 @@ var WorldState = {
 
 	update: function() {
 
-		player.body.velocity.setTo(0,0);
+		this.moveCharacter(player);
+		
 
 
 
-		//Link cursor keys to the movement of the character and the animation
-   	 	if (cursors.left.isDown){
-	        //  Move to the west
-	        player.body.velocity.setTo(-100, 0);	      
-
-	        player.animations.play('west');
-
-    	} else if (cursors.right.isDown) {
-	        //  Move to the east
-	        player.body.velocity.setTo(100, 0);	
-
-	        player.animations.play('east');
-
-	    } else if (cursors.up.isDown) {
-	    	// Move to the north
-	    	player.body.velocity.setTo(0, -100);	
-
-	    	player.animations.play('north');
-
-	    } else if (cursors.down.isDown) {
-	    	// Move to the south
-			player.body.velocity.setTo(0, 100);	
-
-	    	player.animations.play('south');
-
-	    }
 
 	    // Detect collision between eve and world limit
 	    
 	},
+	moveCharacter: function (character) {
+		character.body.velocity.setTo(0,0);
+		if (game.input.keyboard.isDown(Phaser.Keyboard.SHIFT)) {
+			this.runCharacter(character);
+		} else {
+
+			//Link cursor keys to the movement of the character and the animation
+	   	 	if (cursors.left.isDown){
+		        //  Move to the west
+		        character.body.velocity.setTo(-100, 0);	      
+
+		        character.animations.play('west');
+
+	    	} else if (cursors.right.isDown) {
+		        //  Move to the east
+		        character.body.velocity.setTo(100, 0);	
+
+		        character.animations.play('east');
+
+		    } else if (cursors.up.isDown) {
+		    	// Move to the north
+		    	character.body.velocity.setTo(0, -100);	
+
+		    	character.animations.play('north');
+
+		    } else if (cursors.down.isDown) {
+		    	// Move to the south
+				character.body.velocity.setTo(0, 100);	
+
+		    	character.animations.play('south');
+
+		    } else {
+		    	// Stop animations if no cursor is pressed
+		    	character.animations.stop();
+		    }
+		}
+	},
+
+	runCharacter: function(character) {
+		character.body.velocity.setTo(0,0);
+
+		//Link cursor keys to the movement of the character and the animation
+	   	 	if (cursors.left.isDown){
+		        //  Move to the west
+		        character.body.velocity.setTo(-200, 0);	      
+
+		        character.animations.play('west');
+
+	    	} else if (cursors.right.isDown) {
+		        //  Move to the east
+		        character.body.velocity.setTo(200, 0);	
+
+		        character.animations.play('east');
+
+		    } else if (cursors.up.isDown) {
+		    	// Move to the north
+		    	character.body.velocity.setTo(0, -200);	
+
+		    	character.animations.play('north');
+
+		    } else if (cursors.down.isDown) {
+		    	// Move to the south
+				character.body.velocity.setTo(0, 200);	
+
+		    	character.animations.play('south');
+
+		    } else {
+		    	// Stop animations if no cursor is pressed
+		    	character.animations.stop();
+		    }
+	}
 
 };
