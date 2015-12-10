@@ -10,6 +10,37 @@ var WorldState = {
 		//Create the layers from the Tiled tilemap
 		this.BaseLayer = this.map.createLayer('BaseLayer');
 		this.Beach = this.map.createLayer('Beach');
+
+        //Create and animate the shore
+
+
+        shoreCorner = this.game.add.sprite(64, 2320, 'shoreCorner');
+        shoreCorner.animations.add('wave');
+
+        //Create a group of sprites to be the south shore, and animate them
+        shore = game.add.group();
+        for (var i = 6; i < 400; i++) {
+           shorePiece =  shore.create(i*16,2320, 'shoreBottom');
+        }
+        for (var i = 144; i > 140; i--) {
+            left = shore.create(96, 16 * i, 'shoreBottom');
+            left.angle = 90;
+
+        }
+        for (var i = 129; i > 122; i--) {
+            left = shore.create(80, 16 * i, 'shoreBottom');
+            left.angle = 90;
+        }
+
+        shore.callAll('animations.add', 'animations', 'wave',
+            [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18], 10, true);
+        shore.callAll('play', null, 'wave');
+
+        //shore1 = this.game.add.sprite(96,2320, 'shoreBottom');
+
+        //shore.animations.add('wave',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18], 10, true);
+
+        // add the rest of the layers
 		this.BeachFeatures = this.map.createLayer('BeachFeatures');
 		this.map.createLayer('Beach2Forest');
 		this.map.createLayer('Ridges');
@@ -22,8 +53,6 @@ var WorldState = {
 		//21 in the tilesheet
 		this.map.setCollision(21, true, 'Blocking');
 		game.physics.p2.convertTilemap(this.map, "Blocking");
-
-		//Create and animate the shore
 
 
 
@@ -59,6 +88,9 @@ var WorldState = {
 	},
 
 	update: function() {
+
+        //shore1.animations.play('wave');
+        shoreCorner.animations.play('wave',10, true);
 
 
 		if (game.input.keyboard.isDown(Phaser.Keyboard.SHIFT)) {
