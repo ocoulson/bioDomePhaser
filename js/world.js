@@ -44,6 +44,7 @@ var WorldState = {
 		this.BeachFeatures = this.map.createLayer('BeachFeatures');
 		this.map.createLayer('Beach2Forest');
 		this.map.createLayer('Ridges');
+        this.map.createLayer('Trunks');
 		this.Forest = this.map.createLayer('Forest');
 
 		//Make the world bounds as big as the tilesheet
@@ -62,9 +63,9 @@ var WorldState = {
 
 		//Give Eve physics and prevent her from moving outside the world bounds
 		game.physics.p2.enable(eve);
-		eve.body.collideWorldBounds = false;
+		eve.body.collideWorldBounds = true;
 		eve.body.clearShapes();
-		eve.body.addRectangle(20, 11, 6, 2);
+		eve.body.addRectangle(20, 16, 0, 10);
 		eve.body.physicsBodyType = Phaser.Physics.P2JS;
 
 		eve.body.fixedRotation = true;
