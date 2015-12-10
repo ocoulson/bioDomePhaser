@@ -1,29 +1,39 @@
 var WorldState = {
 
 	create: function() {
+		//Set the JSON Island 1 as the map of the world
+		this.map = this.game.add.tilemap('Island1');
 
-		this.map = this.game.add.tilemap('BasicForest');
+		//Set the tileset image
+		this.map.addTilesetImage('TilesheetBiodome', 'TilesheetBiodome');
 
-		this.map.addTilesetImage('Grass1', 'Grass1');
-		this.map.addTilesetImage('Pines', 'Pines');
+		//Create the layers from the Tiled tilemap
+		this.BaseLayer = this.map.createLayer('BaseLayer');
+		this.Beach = this.map.createLayer('Beach');
+		this.BeachFeatures = this.map.createLayer('BeachFeatures');
+		this.map.createLayer('Beach2Forest');
+		this.map.createLayer('Ridges');
+		this.Forest = this.map.createLayer('Forest');
 
-		this.backgroundLayer = this.map.createLayer('Ground');
-		this.trunks = this.map.createLayer('Trunks');
+		//Make the world bounds as big as the tilesheet
+		game.world.setBounds(0, 0, 3200, 2400);
+
+		//Set the collisions using the blocking tile at position
+		//21 in the tilesheet
+		this.map.setCollision(21, true, 'Blocking');
+		game.physics.p2.convertTilemap(this.map, "Blocking");
+
+		//Create and animate the shore
 
 
-		//this.map.setCollision(249, true, 'Collisions');
-
-		game.physics.startSystem(Phaser.Physics.P2JS);
-
-		//game.physics.p2.convertTilemap(this.map, "Collisions");
 
 		// Create sprite for first character
-		eve = this.game.add.sprite(game.world.centerX, game.world.centerY +70, 'Eve');
+		eve = this.game.add.sprite(240, 2288, 'Eve');
 		eve.anchor.setTo(0.5, 0.5);
 
 		//Give Eve physics and prevent her from moving outside the world bounds
 		game.physics.p2.enable(eve);
-		eve.body.collideWorldBounds = true;
+		eve.body.collideWorldBounds = false;
 		eve.body.clearShapes();
 		eve.body.addRectangle(20, 11, 6, 2);
 		eve.body.physicsBodyType = Phaser.Physics.P2JS;
@@ -40,56 +50,13 @@ var WorldState = {
    	 	//Create controls to move Eve around
    	 	cursors = game.input.keyboard.createCursorKeys();
 
-   	 	this.topLayer = this.map.createLayer('Trees');
+		//Set the camera to follow Eve
+		game.camera.follow(eve);
 
-		this.topLayer.resizeWorld();
-
-		this.generateCollisions(eve);
-
-	},
-	generateCollisions: function(character) {
-		//Create a physics collision group which will interact with eve
-
-		blocksCollisionGroup = game.physics.p2.createCollisionGroup();
-        characterCollisionGroup = game.physics.p2.createCollisionGroup();
-
-        character.body.setCollisionGroup(characterCollisionGroup);
-
-		//Ensure that eve will still collide with world bounds.
-		game.physics.p2.updateBoundsCollisionGroup();
-        character.body.collides(blocksCollisionGroup);
-
-		// Get the blocks object from the Tiled JSON file.
-		blocks = this.game.add.group();
-	    blocks.enableBody = true;
-	    blocks.physicsBodyType = Phaser.Physics.P2JS;
-        game.physics.p2.enable(blocks);
-
-	    result = this.findObjectsByType('blocks', this.map, 'Collisions');
-	    for (var i = 0; i < result.length; i++) {
-            this.createFromTiledObject(result[i], blocks);
-            blocks.getAt(i).body.setRectangle(10,10);
-            blocks.getAt(i).body.setCollisionGroup(blocksCollisionGroup);
-            blocks.getAt(i).body.collides(characterCollisionGroup);
-
-        }
-
-
-
+		//Create the trees after Eve so she passes behind them.
+		this.map.createLayer('Trees');
 
 	},
-	findObjectsByType: function(type, map, layer) {
-	    var output = [];
-	    map.objects[layer].forEach(function(element){
-	      if(element.properties.type === type) {
-	        //Phaser uses top left, Tiled bottom left so we have to adjust
-
-	        element.y -= map.tileHeight;
-	        output.push(element);
-	      }
-	    });
-    return output;
-  	},
 
 	update: function() {
 
