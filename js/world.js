@@ -83,6 +83,10 @@ var WorldState = {
 		//Set the camera to follow Eve
 		game.camera.follow(eve);
 
+        //Create 'deadzone' for camera so it only follows eve
+        //when she enters the edges of the screen.
+        game.camera.deadzone = new Phaser.Rectangle(128, 128, 384, 144);
+
 		//Create the trees after Eve so she passes behind them.
 		this.map.createLayer('Trees');
 
