@@ -40,12 +40,13 @@ var WorldState = {
 
         //shore.animations.add('wave',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18], 10, true);
 
-        // add the rest of the layers
+        // add the rest of the layers (rendered in this order)
 		this.BeachFeatures = this.map.createLayer('BeachFeatures');
 		this.map.createLayer('Beach2Forest');
-		this.map.createLayer('Ridges');
-        this.map.createLayer('Trunks');
 		this.Forest = this.map.createLayer('Forest');
+        this.map.createLayer('ForestFeatures');
+        this.map.createLayer('Ridges');
+        this.map.createLayer('Trunks');
 
 		//Make the world bounds as big as the tilesheet
 		game.world.setBounds(0, 0, 3200, 2400);

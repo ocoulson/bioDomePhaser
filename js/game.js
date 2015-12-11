@@ -1,5 +1,5 @@
 // Create the game object
-var game = new Phaser.Game(640, 400, Phaser.AUTO, 'gameDiv');
+var game = new Phaser.Game(640, 400, Phaser.CANVAS, 'gameDiv');
 
 // Create the states of the game
 game.state.add('title', TitleState);
