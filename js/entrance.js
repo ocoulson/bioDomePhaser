@@ -18,13 +18,25 @@ var EntranceState = {
         //Create and animate the shore
         //Create a group of sprites to be the south shore, and animate them
         shore = game.add.group();
-        for (var i = 6; i < 400; i++) {
-            shorePiece =  shore.create(i*16,2320, 'shoreBottom');
+        for (var i = 2; i < 40; i++) {
+            shorePiece =  shore.create(i*16,720, 'shoreBottom');
+
         }
 
         shore.callAll('animations.add', 'animations', 'wave',
             [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18], 10, true);
         shore.callAll('play', null, 'wave');
+
+        //Create a group to animate the secondary wave sprites
+
+        wave = game.add.group();
+        for (var i = 0; i < 40; i ++) {
+            wavePiece = wave.create(i*16, 752, 'waveBottom');
+        }
+
+        wave.callAll('animations.add', 'animations', 'wave2', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14], 10, true);
+        wave.callAll('play', null, 'wave2');
+
 
         // add the rest of the layers (rendered in this order)
         this.BeachFeatures = this.map.createLayer('BeachFeatures');
@@ -58,7 +70,7 @@ var EntranceState = {
         game.physics.p2.enable(eve);
         eve.body.collideWorldBounds = true;
         eve.body.clearShapes();
-        eve.body.addRectangle(28, 32, 0, 0);
+        eve.body.addRectangle(24, 20, 2, 6);
         eve.body.physicsBodyType = Phaser.Physics.P2JS;
 
         eve.body.fixedRotation = true;
