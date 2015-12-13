@@ -96,6 +96,8 @@ var EntranceState = {
         //Create the trees after Eve so she passes behind them.
         this.map.createLayer('Trees');
 
+
+
     },
 
     update: function() {
