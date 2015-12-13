@@ -39,6 +39,7 @@ var EntranceState = {
 
 
         // add the rest of the layers (rendered in this order)
+        this.map.createLayer('BeachShadows');
         this.BeachFeatures = this.map.createLayer('BeachFeatures');
         this.map.createLayer('Beach2Forest');
         this.Forest = this.map.createLayer('Forest');
