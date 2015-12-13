@@ -66,7 +66,7 @@ var WorldState = {
 		game.physics.p2.enable(eve);
 		eve.body.collideWorldBounds = true;
 		eve.body.clearShapes();
-		eve.body.addRectangle(20, 16, 0, 10);
+		eve.body.addRectangle(28, 32, 0, 0);
 		eve.body.physicsBodyType = Phaser.Physics.P2JS;
 
 		eve.body.fixedRotation = true;

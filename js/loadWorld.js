@@ -1,9 +1,9 @@
 var LoadWorldState = {
-	
+
 	init: function() {
 		this.game.stage.backgroundColor = '#ffffff';
 	},
-	
+
 	preload: function() {
 		// Preload the images to be used on the title screen
 		this.game.load.spritesheet('Eve', 'assets/Spritesheets/Eve1_24-32.png', 24, 32);
@@ -12,7 +12,7 @@ var LoadWorldState = {
 		this.game.load.spritesheet('shoreCorner', 'assets/Spritesheets/beachCorner.png', 32,32);
 
 		this.game.load.image('TilesheetBiodome', 'assets/images/TilesheetBiodome.png');
-		
+
 	},
 
 	create: function() {

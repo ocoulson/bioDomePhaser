@@ -169,7 +169,7 @@ var TitleState = {
 	},
 
 	nextState: function() {
-		game.state.start('loadWorld');
+		game.state.start('loadEntrance');
 	}
 
 
