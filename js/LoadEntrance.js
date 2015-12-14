@@ -14,6 +14,7 @@ var LoadEntranceState = {
         this.game.load.tilemap('Entrance', 'assets/tilemaps/Entrance.json', null, Phaser.Tilemap.TILED_JSON);
         this.game.load.spritesheet('shoreBottom', 'assets/Spritesheets/beach.png', 16,32);
         this.game.load.spritesheet('waveBottom', 'assets/Spritesheets/wave.png', 16,32);
+        this.game.load.spritesheet('Sign', 'assets/Images/Sign.png', 32,32);
 
 
         this.game.load.image('TilesheetBiodome', 'assets/images/TilesheetBiodome.png');

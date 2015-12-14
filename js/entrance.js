@@ -4,6 +4,7 @@
 
 var EntranceState = {
 
+
     create: function() {
         //Set the JSON Island 1 as the map of the world
         this.map = this.game.add.tilemap('Entrance');
@@ -45,22 +46,35 @@ var EntranceState = {
         this.Forest = this.map.createLayer('Forest');
         //Ridges before features and trees so they render on top.
         this.map.createLayer('Ridges');
-        this.map.createLayer('ForestFeatures');
+        forestFeatures = this.map.createLayer('ForestFeatures');
 
         this.map.createLayer('Trunks');
+
+
 
         //Make the world bounds as big as the tilemap
         game.world.setBounds(0, 0, 640, 800);
 
+
         //Set the collisions using the blocking tile at position
         //21 in the tilesheet
         this.map.setCollision(21, true, 'Blocking');
+
+        //And all the tiles on these layers
         this.map.setCollisionBetween(23, 305, true, 'ForestFeatures');
         this.map.setCollisionBetween(392, 505, true, 'Trunks');
 
         game.physics.p2.convertTilemap(this.map, "Blocking");
         game.physics.p2.convertTilemap(this.map, "ForestFeatures");
         game.physics.p2.convertTilemap(this.map, "Trunks");
+
+        //Create a sign sprite for Player to interact with.
+        sign = game.add.sprite(48, 80, 'Sign');
+        game.physics.p2.enable(sign);
+        sign.body.static = true;
+        sign.body.physicsBodyType = Phaser.Physics.P2JS;
+
+
 
 
         // Create sprite for first character
@@ -73,6 +87,9 @@ var EntranceState = {
         eve.body.clearShapes();
         eve.body.addRectangle(24, 20, 2, 6);
         eve.body.physicsBodyType = Phaser.Physics.P2JS;
+
+
+
 
         eve.body.fixedRotation = true;
 
@@ -97,10 +114,11 @@ var EntranceState = {
         this.map.createLayer('Trees');
 
 
-
     },
 
     update: function() {
+
+
 
         if (game.input.keyboard.isDown(Phaser.Keyboard.SHIFT)) {
             this.moveCharacter(eve, 150);
