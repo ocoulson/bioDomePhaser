@@ -31,7 +31,7 @@ var EntranceState = {
         //Create a group to animate the secondary wave sprites
 
         wave = game.add.group();
-        for (var i = 0; i < 40; i ++) {
+        for (var i = 1; i < 40; i ++) {
             wavePiece = wave.create(i*16, 752, 'waveBottom');
         }
 
@@ -68,13 +68,12 @@ var EntranceState = {
         game.physics.p2.convertTilemap(this.map, "ForestFeatures");
         game.physics.p2.convertTilemap(this.map, "Trunks");
 
+
         //Create a sign sprite for Player to interact with.
         sign = game.add.sprite(48, 80, 'Sign');
         game.physics.p2.enable(sign);
         sign.body.static = true;
         sign.body.physicsBodyType = Phaser.Physics.P2JS;
-
-
 
 
         // Create sprite for first character
@@ -87,8 +86,6 @@ var EntranceState = {
         eve.body.clearShapes();
         eve.body.addRectangle(24, 20, 2, 6);
         eve.body.physicsBodyType = Phaser.Physics.P2JS;
-
-
 
 
         eve.body.fixedRotation = true;
@@ -109,6 +106,7 @@ var EntranceState = {
         //Create 'deadzone' for camera so it only follows eve
         //when she enters the edges of the screen.
         game.camera.deadzone = new Phaser.Rectangle(128, 128, 384, 144);
+
 
         //Create the trees after Eve so she passes behind them.
         this.map.createLayer('Trees');

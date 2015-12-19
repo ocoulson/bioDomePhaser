@@ -7,6 +7,9 @@ var BootState = {
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		//Load the title screen
-		game.state.start('loadEntrance');
+		//game.state.start('loadTitle');
+
+		//Skip straight to entrance
+        game.state.start('loadEntrance');
 	}
 };
