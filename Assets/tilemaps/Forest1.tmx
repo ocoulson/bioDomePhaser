@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="120" height="50" tilewidth="16" tileheight="16" nextobjectid="3">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="120" height="50" tilewidth="16" tileheight="16" nextobjectid="4">
  <tileset firstgid="1" name="TilesheetBiodome" tilewidth="16" tileheight="16" tilecount="2440">
   <image source="../Images/TilesheetBiodome.png" trans="ffffff" width="640" height="976"/>
  </tileset>
@@ -546,5 +546,6 @@
  <objectgroup name="Transitions">
   <object id="1" name="EastEntrance" type="Transition" x="1903.03" y="494" width="33.3333" height="45.3939"/>
   <object id="2" name="South" type="Transition" x="910" y="783" width="50" height="29"/>
+  <object id="3" gid="1" x="1577" y="523" width="16" height="16"/>
  </objectgroup>
 </map>
