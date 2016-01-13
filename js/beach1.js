@@ -1,11 +1,11 @@
 /**
- * Created by olliecoulson on 19/12/2015.
+ * Created by olliecoulson on 13/01/2016.
  */
-var Forest1State = {
 
+var Beach1State = {
     create: function() {
         // Set the map object
-        this.map = this.game.add.tilemap('Forest1');
+        this.map = this.game.add.tilemap('Beach1');
         //Make the world bounds as big as the tilemap
         game.world.setBounds(0, 0, 1920, 800);
 
@@ -14,33 +14,26 @@ var Forest1State = {
 
         //Create the layers from the Tiled tilemap
         this.BaseLayer = this.map.createLayer('BaseLayer');
-        this.Forest = this.map.createLayer('Forest');
 
-        this.Forest = this.map.createLayer('Forest');
+
+
         //Ridges before features and trees so they render on top.
         this.map.createLayer('Ridges');
-        forestFeatures = this.map.createLayer('ForestFeatures');
 
-        this.map.createLayer('Trunks');
 
 
         //Set the collisions using the blocking tile at position
         //21 in the tilesheet
         this.map.setCollision(21, true, 'Blocking');
 
-        //And all the tiles on these layers
-        this.map.setCollisionBetween(23, 305, true, 'ForestFeatures');
-        this.map.setCollisionBetween(392, 629, true, 'Trunks');
-
         game.physics.p2.convertTilemap(this.map, "Blocking");
 
-        game.physics.p2.convertTilemap(this.map, "Trunks");
 
 
 
         //Create a new eve for now, but will want to pass the previous sprite object through
 
-        eve = this.game.add.sprite(1872, 512, 'Eve');
+        eve = this.game.add.sprite(934, 4, 'Eve');
         eve.anchor.setTo(0.5, 0.5);
 
         //Give Eve physics and prevent her from moving outside the world bounds
@@ -65,7 +58,7 @@ var Forest1State = {
         game.camera.follow(eve);
 
         //Graphics rendered on top of character
-        this.Trees = this.map.createLayer('Trees');
+
     },
 
     update: function() {
@@ -74,9 +67,9 @@ var Forest1State = {
 
         this.spacebar.onDown.add(this.printPosition, this);
 
-        if ((eve.position.x <950) && (eve.position.x > 920) && (eve.position.y > 780)) {
-            this.game.state.start('loadBeach1');
-        }
+        //if ((eve.position.x <950) && (eve.position.x > 920) && (eve.position.y > 780)) {
+        //    this.game.state.start('loadForest1');
+        //}
 
 
         if (game.input.keyboard.isDown(Phaser.Keyboard.SHIFT)) {
@@ -126,5 +119,4 @@ var Forest1State = {
         }
 
     }
-
 };
