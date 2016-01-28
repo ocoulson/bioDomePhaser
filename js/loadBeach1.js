@@ -15,6 +15,7 @@ var LoadBeach1State = {
         //load the wave animation sheets
         this.game.load.spritesheet('shoreBottom', 'assets/Spritesheets/beach.png', 16,32);
         this.game.load.spritesheet('waveBottom', 'assets/Spritesheets/wave.png', 16,32);
+        this.game.load.spritesheet('shoreCorner', 'assets/Spritesheets/beachCorner.png', 32,32);
 
 
     },

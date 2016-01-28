@@ -4,6 +4,7 @@
 
 var Beach1State = {
     create: function() {
+        tilewidth = 16;
         // Set the map object
         this.map = this.game.add.tilemap('Beach1');
         //Make the world bounds as big as the tilemap
@@ -14,13 +15,47 @@ var Beach1State = {
 
         //Create the layers from the Tiled tilemap
         this.BaseLayer = this.map.createLayer('BaseLayer');
+        this.transition = this.map.createLayer('BeachGrass');
+        this.Beach = this.map.createLayer('Beach');
 
 
+        //Create and animate the shore
+        //Create a group of sprites to be the south shore, and animate them
+        shore = game.add.group();
+        for (var i = 5; i < 117; i++) {
+            shore.create(i*tilewidth,720, 'shoreBottom');
 
-        //Ridges before features and trees so they render on top.
+        }
+        corner = shore.create(3*tilewidth, 720, 'shoreCorner');
+
+        for (var i = 0; i < 45; i++) {
+            shorePiece = shore.create(5*tilewidth, i*tilewidth,'shoreBottom');
+            shorePiece.rotation = 1.5;
+        }
+
+        shore.callAll('animations.add', 'animations', 'wave',
+            [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18], 10, true);
+        shore.callAll('play', null, 'wave');
+
+
+        //Create a group to animate the secondary wave sprites
+
+        wave = game.add.group();
+        for (var i = 2; i < 118; i ++) {
+            wave.create(i*tilewidth, 752, 'waveBottom');
+        }
+
+        for (var i = 0; i < 48; i++) {
+            wavePiece = wave.create(3*tilewidth, i * tilewidth, 'waveBottom');
+            wavePiece.rotation = 1.5;
+        }
+
+        wave.callAll('animations.add', 'animations', 'wave2', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14], 10, true);
+        wave.callAll('play', null, 'wave2');
+
+
+        //Ridges before features and trees so they render on top, but after shore
         this.map.createLayer('Ridges');
-
-
 
         //Set the collisions using the blocking tile at position
         //21 in the tilesheet
